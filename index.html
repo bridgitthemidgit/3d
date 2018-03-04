@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>3D</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="col-9">
+      <canvas width="640" height="480" id="le-canvas"></canvas>
+    </div>
+    <div class="col-2">
+      <button
+        type="button"
+        class="btn btn-outline-success btn-block"
+        onclick="LoadMesh('cross');">
+        Cross
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-success btn-block"
+        onclick="LoadMesh('arc1');">
+        Arc
+      </button>
+      <!-- Leave this for testing -->
+      <!-- <button
+        type="button"
+        class="btn btn-outline-success btn-block"
+        onclick="LoadMesh('01-dwellmoth-tower');">
+        Dwellmoth Tower
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-success btn-block"
+        onclick="LoadMesh('female');">
+        Female
+      </button> -->
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="js/three.min.js"></script>
+<script type="text/javascript" src="js/obj_loader.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
