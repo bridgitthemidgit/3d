@@ -1,5 +1,5 @@
 
-let CAMERA_ROTATION_RADIUS = 9; // make const after testing
+let camera_rotation_radius = 9;
 let SHADOW_CAMERA_SIZE = 10;
 
 let scene = new THREE.Scene();
@@ -97,30 +97,32 @@ let clock = new THREE.Clock();
 function UpdateScene() {
   let time = Date.now() * 0.0005;
   let delta = clock.getDelta();
-  camera.position.x = Math.sin(time) * CAMERA_ROTATION_RADIUS;
-  camera.position.z = Math.cos(time) * CAMERA_ROTATION_RADIUS;
+  camera.position.x = Math.sin(time) * camera_rotation_radius;
+  camera.position.z = Math.cos(time) * camera_rotation_radius;
   camera.lookAt(0,0,0);
 }
 
 let last_loaded_meshame = false;
 
-function LoadMesh(meshname) {
+function LoadMesh(meshname, rotation_radius, camera_height) {
   let path = "models/" + meshname + "/" + meshname + ".obj";
-    loader.load(path, (object) => {
-      if (last_loaded_meshame) {
-        let previous_object = scene.getObjectByName(last_loaded_meshame);
-        scene.remove(previous_object);
-      }
-      last_loaded_meshame = meshname;
-      object.name = meshname;
-      for (let i=0; i<object.children.length; i++) {
-        let material = new THREE.MeshStandardMaterial( {color: 0xffffff } );
-        material.metalness = 0.0;
-        object.children[i].material = material;
-        object.children[i].receiveShadow = true;
-        object.children[i].castShadow = true;
-      }
-      scene.add(object);
+  camera_rotation_radius = rotation_radius;
+  camera.position.y = camera_height;
+  loader.load(path, (object) => {
+    if (last_loaded_meshame) {
+      let previous_object = scene.getObjectByName(last_loaded_meshame);
+      scene.remove(previous_object);
+    }
+    last_loaded_meshame = meshname;
+    object.name = meshname;
+    for (let i=0; i<object.children.length; i++) {
+      let material = new THREE.MeshStandardMaterial( {color: 0xffffff } );
+      material.metalness = 0.0;
+      object.children[i].material = material;
+      object.children[i].receiveShadow = true;
+      object.children[i].castShadow = true;
+    }
+    scene.add(object);
   }, onProgress, onError);
 }
 
