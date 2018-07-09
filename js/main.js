@@ -18,7 +18,6 @@ let renderer = new THREE.WebGLRenderer({
 });
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-renderer.shadowMap.ma
 
 function CreateCube() {
   let geometry = new THREE.BoxGeometry(1,1,1);
@@ -40,7 +39,7 @@ function CreatePlane(width, height) {
   material.metalness = 0.0;
   let plane = new THREE.Mesh( geometry, material );
   plane.rotation.x = Math.PI / 2;
-  plane.position.y = -0.5;
+  plane.position.y = 0;
   plane.receiveShadow = true;
   return plane;
 }
@@ -66,15 +65,12 @@ dir_light = new THREE.DirectionalLight( 0x26cdc0, 0.6 );
 dir_light.position.set( -1, 1.75, 1 );
 dir_light.position.multiplyScalar( 30 );
 dir_light.castShadow = true;
-// dir_light.shadow.camera.near = 0.5;
-// dir_light.shadow.camera.far = 10000;
 dir_light.shadow.camera.top = SHADOW_CAMERA_SIZE;
 dir_light.shadow.camera.bottom = -SHADOW_CAMERA_SIZE;
 dir_light.shadow.camera.left = -SHADOW_CAMERA_SIZE;
 dir_light.shadow.camera.right = SHADOW_CAMERA_SIZE;
 dir_light.shadow.mapSize.width = 1024;
 dir_light.shadow.mapSize.height = 1024;
-// dir_light.shadow.ca
 scene.add( dir_light );
 
 let manager = new THREE.LoadingManager();
